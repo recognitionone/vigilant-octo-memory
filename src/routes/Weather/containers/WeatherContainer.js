@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 // import { increment, doubleAsync } from '../modules/weather'
 import { getForecastAction } from '../modules/weather'
+// import { weatherSampleSelector } from '../modules/weatherSelector'
+import { createSelector } from 'reselect'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -16,12 +18,19 @@ import Weather from '../components/Weather'
 const mapDispatchToProps = {
   // increment : () => increment(1),
   // doubleAsync
-  getForecastAction
+  getForecastAction,
+  // hello
 }
 
-const mapStateToProps = (state) => ({
-  state
-})
+// const weather = (state) => state.weather
+// const getGalleryStateList = createSelector(state => state.list[0])
+
+const mapStateToProps = (state) => {
+  // return { weather }
+  // getGalleryStateList(state)
+  // {state}
+    state
+}
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 

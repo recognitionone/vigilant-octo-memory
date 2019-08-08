@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 export const Weather = ({ getForecastAction }) => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Weather</h2>
+    <h2>any</h2>
+    {console.log(getForecastAction)}
     <button className='btn btn-primary' onClick={getForecastAction}>
       Get Forecast
     </button>

@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 import { createLogger } from 'redux-logger'
+import { getForecastAction } from '../routes/Weather/modules/weather'
 
 const createStore = (initialState = {}) => {
   // ======================================================
@@ -47,6 +48,10 @@ const createStore = (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+
+  store.dispatch(
+    getForecastAction()
+  )
 
   return store
 }

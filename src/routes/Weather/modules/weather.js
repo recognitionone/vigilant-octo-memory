@@ -9,7 +9,7 @@ export const GET_FORECAST_SUCCESS = 'GET_FORECAST_SUCCESS'
 
 export const getForecastSuccess = (forecast) => ({
   type: GET_FORECAST_SUCCESS,
-  payload: { forecast },
+  payload: { forecast }
 })
 
 export const getForecastAction = () => {
@@ -18,6 +18,10 @@ export const getForecastAction = () => {
         .then(
             (forecast) => dispatch(getForecastSuccess(forecast))
         )
+        .then(
+          forecast => (forecast.payload.forecast)
+          )
+        .then(forecast => console.log(forecast))
   }
 }
 // ------------------------------------
@@ -52,7 +56,7 @@ export const doubleAsync = () => {
 export const actions = {
   // increment,
   // doubleAsync,
-  getForecastAction
+  getForecastAction,
 }
 
 // ------------------------------------
@@ -61,24 +65,14 @@ export const actions = {
 const ACTION_HANDLERS = {
   // [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
   // [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
-  [GET_FORECAST_SUCCESS] : (state, action) => action.payload.forecast
+  [GET_FORECAST_SUCCESS] : (state, action) => action.payload
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function weatherReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
 
+export default function weatherReducer (state = {}, action) {
+  const handler = ACTION_HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }
-
-// export default function weatherReducer (state = {}, action) {
-//   switch (action.type) {
-//     case GET_FORECAST_SUCCESS:
-//       return action.payload.forecast
-//     default:
-//       return state
-//   }
-// }
