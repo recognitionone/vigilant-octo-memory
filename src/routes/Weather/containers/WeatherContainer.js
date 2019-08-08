@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/weather'
+// import { increment, doubleAsync } from '../modules/weather'
+import { getForecastAction } from '../modules/weather'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -13,12 +14,13 @@ import Weather from '../components/Weather'
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  increment : () => increment(1),
-  doubleAsync
+  // increment : () => increment(1),
+  // doubleAsync
+  getForecastAction
 }
 
 const mapStateToProps = (state) => ({
-  weather : state.weather
+  state
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
@@ -36,3 +38,4 @@ const mapStateToProps = (state) => ({
     https://github.com/reactjs/reselect    */
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather)
+// export default connect(mapDispatchToProps)(Weather)

@@ -1,22 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const Weather = ({ weather, increment, doubleAsync }) => (
+export const Weather = ({ getForecastAction }) => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Weather: {weather}</h2>
-    <button className='btn btn-primary' onClick={increment}>
-      Increment
-    </button>
-    {' '}
-    <button className='btn btn-secondary' onClick={doubleAsync}>
-      Double (Async)
+    <h2>Weather</h2>
+    <button className='btn btn-primary' onClick={getForecastAction}>
+      Get Forecast
     </button>
   </div>
 )
 Weather.propTypes = {
-  weather: PropTypes.number.isRequired,
-  increment: PropTypes.func.isRequired,
-  doubleAsync: PropTypes.func.isRequired,
+  getForecastAction: PropTypes.func.isRequired,
 }
 
 export default Weather

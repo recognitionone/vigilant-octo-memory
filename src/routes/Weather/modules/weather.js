@@ -1,12 +1,29 @@
+import ForecastService from '../../../services/forecastService'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const GET_FORECAST_SUCCESS = 'GET_FORECAST_SUCCESS'
 
+export const getForecastSuccess = (forecast) => ({
+  type: GET_FORECAST_SUCCESS,
+  payload: { forecast },
+})
+
+export const getForecastAction = () => {
+  return function (dispatch) {
+    return ForecastService.getForecast()
+        .then(
+            (forecast) => dispatch(getForecastSuccess(forecast))
+        )
+  }
+}
 // ------------------------------------
 // Actions
 // ------------------------------------
+
 export function increment (value = 1) {
   return {
     type    : COUNTER_INCREMENT,
@@ -33,24 +50,35 @@ export const doubleAsync = () => {
 }
 
 export const actions = {
-  increment,
-  doubleAsync
+  // increment,
+  // doubleAsync,
+  getForecastAction
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  // [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
+  // [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
+  [GET_FORECAST_SUCCESS] : (state, action) => action.payload.forecast
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = 0
-export default function counterReducer (state = initialState, action) {
+export default function weatherReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
 }
+
+// export default function weatherReducer (state = {}, action) {
+//   switch (action.type) {
+//     case GET_FORECAST_SUCCESS:
+//       return action.payload.forecast
+//     default:
+//       return state
+//   }
+// }
