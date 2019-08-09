@@ -16,20 +16,16 @@ import Weather from '../components/Weather'
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  // increment : () => increment(1),
-  // doubleAsync
   getForecastAction,
-  // hello
 }
 
-// const weather = (state) => state.weather
-// const getGalleryStateList = createSelector(state => state.list[0])
+// const weather = (state) => state
+// const getGalleryStateList = createSelector(weather, state => state.city.name)
 
 const mapStateToProps = (state) => {
-  // return { weather }
-  // getGalleryStateList(state)
-  // {state}
-    state
+  let today = state.weather.forecast.list[0].main
+  console.log(today)
+  return { today }
 }
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
@@ -47,4 +43,3 @@ const mapStateToProps = (state) => {
     https://github.com/reactjs/reselect    */
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather)
-// export default connect(mapDispatchToProps)(Weather)

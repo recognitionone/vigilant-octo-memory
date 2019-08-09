@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const Weather = ({ getForecastAction }) => (
   <div style={{ margin: '0 auto' }} >
     <h2>any</h2>
-    {console.log(getForecastAction)}
+    {console.log('Weather.js')}
     <button className='btn btn-primary' onClick={getForecastAction}>
       Get Forecast
     </button>
