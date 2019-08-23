@@ -40,7 +40,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 
-export default function weatherReducer (state = {}, action) {
+const initialState = { loading: 'loading' }
+export default function weatherReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }
